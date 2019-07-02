@@ -1,0 +1,149 @@
+<div class="container">
+  <ngx-loading [show]="loading"></ngx-loading>
+  <br>
+  <div class="form-group row">
+    <H1>LOAN </H1>
+  </div>
+  <form ngNativeValidate>
+
+
+    <div class="row">
+      <div class="field-label col-md-4 mx-auto">
+        <label for="BANK" class="text-muted">Bank</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.BANK" id="BANK" name="BANK">
+      </div>
+
+      <div class="field-label col-md-4 mx-auto">
+        <label for="DOC_LOAN" class="text-muted">Document Type</label>
+        <select class="form-control" required [(ngModel)]="model.DOC_LOAN" [name]="DOC_LOAN" id="DOC_LOAN"
+          [ngModelOptions]="{standalone: true}">
+          <option value="PO">Purchase Order</option>
+          <option value="INVOICE">Invoice</option>
+        </select>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="field-label col-md-4 mx-auto">
+        <label for="KEY" class="text-muted">Document Key</label>
+        <input type="number" class="form-control border-bottom" required [(ngModel)]="model.KEY" id="KEY" name="KEY">
+      </div>
+
+      <div class="field-label col-md-4 mx-auto">
+        <label for="EMAIL" class="text-muted">Email</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.EMAIL" id="EMAIL"
+          name="EMAIL">
+      </div>
+    </div>
+
+    <hr>
+    <div class="row">
+      <div class="field-label col-md-4 mx-auto">
+        <label for="TEL_NUMBER" class="text-muted">Tel</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.TEL_NUMBER" id="TEL_NUMBER"
+          name="TEL_NUMBER" pattern="^([0-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$">
+      </div>
+
+      <div class="field-label col-md-4 mx-auto">
+        <label for="BUSINESS_TYPE" class="text-muted">Business type</label>
+        <select class="form-control" required [(ngModel)]="model.BUSINESS_TYPE" [name]="BUSINESS_TYPE"
+          id="BUSINESS_TYPE" [ngModelOptions]="{standalone: true}">
+          <option value="Service_Business">Service Business</option>
+          <option value="Merchandising_Business">Merchandising Business</option>
+          <option value="Manufacturing_Business">Manufacturing Business</option>
+          <option value="Hybrid_Business">Hybrid Business</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="field-label col-md-4 mx-auto">
+        <label for="INCOME" class="text-muted">Money Income</label>
+        <input type="number" class="form-control border-bottom" required [(ngModel)]="model.INCOME" id="INCOME"
+          name="INCOME">
+      </div>
+
+      <div class="field-label col-md-4 mx-auto">
+        <label for="GUARANTEE" class="text-muted">Company Certificate</label>
+        <input type="number" class="form-control border-bottom" required [(ngModel)]="model.GUARANTEE" id="GUARANTEE"
+          name="GUARANTEE">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-label col-md-4 mx-auto">
+        <label for="LOAN_AMOUNT" class="text-muted">Loan Amount</label>
+        <input type="number" class="form-control border-bottom" required [(ngModel)]="model.LOAN_AMOUNT"
+          id="LOAN_AMOUNT" name="LOAN_AMOUNT">
+      </div>
+
+      <div class="field-label col-md-4 mx-auto">
+        <label for="INSTALLMENT" class="text-muted">Installment Price (per year)</label>
+        <input type="number" class="form-control border-bottom" required [(ngModel)]="model.INSTALLMENT"
+          id="INSTALLMENT" name="INSTALLMENT">
+      </div>
+    </div>
+    <hr>
+
+    <!-- ----------------------------------SUBMIT-------------------------------------- -->
+    <div class="row">
+      <div class="center">
+        <button type="submit" class="w3-btn w3-grey w3-border w3-border-green w3-text-white w3-round-xlarge"
+          (click)="openModal(template)" style="text-shadow:1px 1px 0 #444">SUBMIT</button>
+      </div>
+    </div>
+
+    <ng-template #template>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+      <p><span class="font">Bank :</span> {{this.model.BANK.trim()}}</p>
+      <p><span class="font">Document Type :</span> {{this.model.DOC_LOAN.trim()}}</p>
+      <p><span class="font">Document Key :</span> {{this.model.KEY}}</p>
+      <p><span class="font">Email :</span>{{this.model.EMAIL.trim()}}</p>
+      <p><span class="font">Tel Number :</span> {{this.model.TEL_NUMBER}}</p>
+      <p><span class="font">Business Type :</span> {{this.model.BUSINESS_TYPE.trim()}}</p>
+      <p><span class="font">Money Income :</span> {{this.model.INCOME}}</p>
+      <p><span class="font">Company Certificate :</span> {{this.model.GUARANTEE}}</p>
+      <p><span class="font">Loan Amount :</span> {{this.model.LOAN_AMOUNT}}</p>
+      <p><span class="font">Installment Price per Year :</span> {{this.model.INSTALLMENT}}</p>
+
+    </pre>
+        <p>Do you want to confirm?</p>
+        <button type="button" class="btn btn-primary" (click)="confirm(resulttemplate,errortemplate)">Yes</button>
+        <button type="button" class="btn btn-default" (click)="decline()">No</button>
+      </div>
+    </ng-template>
+
+    <!-- ------------------------------------------------------------------------------ -->
+    <br>
+    <ng-template #resulttemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+            <p style="color:rgb(0, 0, 0); text-align: center " >{{message}}</p>
+              </pre>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="Ok()">
+          <a style="color:white" [routerLink]="['/dashboard']">
+            Ok
+          </a>
+        </button>
+      </div>
+    </ng-template>
+
+    <br>
+    <ng-template #errortemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+            <p style="color:rgb(255, 0, 0); text-align: center" >error: {{message}}</p>
+              </pre>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="Oknorefresh()">Ok</button>
+      </div>
+    </ng-template>
+    <!-- ------------------------------------------------------------------------------ -->
+
+  </form>
+</div>

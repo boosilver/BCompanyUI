@@ -1,0 +1,142 @@
+<div class="container">
+  <ngx-loading [show]="loading"></ngx-loading>
+  <br>
+  <div class="form-group row">
+    <H1>CREATE INVOICE</H1>
+  </div>
+  <form ngNativeValidate>
+
+
+    <div class="row">
+      <div class="field-label col-md-4 mx-auto">
+        <label for="TO" class="text-muted">To (company)</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.TO" id="TO" name="TO">
+      </div>
+
+      <div class="field-label col-md-4 mx-auto">
+        <label for="EMAIL" class="text-muted">Email</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.EMAIL" id="EMAIL"
+          name="EMAIL">
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="field-label col-md-4 mx-auto">
+        <label for="TEL_NUMBER" class="text-muted">Tel</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.TEL_NUMBER" id="TEL_NUMBER"
+          name="TEL_NUMBER" pattern="^([0-9][0-9]*(\.[0-9]+)?|0+\.[0-9]*[1-9][0-9]*)$">
+      </div>
+
+      <div class="field-label col-md-4 mx-auto">
+        <label for="PO_KEY" class="text-muted">Purchase Order Key</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.PO_KEY" id="PO_KEY"
+          name="PO_KEY">
+      </div>
+    </div>
+    <hr>
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+
+    <div class="row col-md-10 mx-auto">
+      <div class="field-label col-md-4 mx-auto">
+        <label for="PRODUCT" class="text-muted">Product</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.PRODUCT" id="PRODUCT"
+          name="PRODUCT">
+      </div>
+      <div class="field-label col-md-4 mx-auto">
+        <label for="NUM_PRODUCT" class="text-muted">Number of Product</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.NUM_PRODUCT" id="NUM_PRODUCT"
+          name="NUM_PRODUCT">
+      </div>
+      <div class="field-label col-md-4 mx-auto">
+        <label for="VALUE" class="text-muted">Price per product</label>
+        <input type="text" class="form-control border-bottom" required [(ngModel)]="model.VALUE" id="VALUE"
+          name="VALUE">
+      </div>
+    </div>
+    <hr>
+    <!-- --------------------------------------------------------------------------------------------------------------- -->
+
+    <div class="row">
+      <div class="field-label col-md-4 mx-auto">
+        <label for="DELIVERY_DATE" class="text-muted">DELIVERY DATE</label>
+        <input type="date" class="form-control border-bottom" required [(ngModel)]="model.DELIVERY_DATE"
+          id="DELIVERY_DATE" name="DELIVERY_DATE">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field-label col-md-10 mx-auto">
+        <label for="DETAIL" class="text-muted">Other</label>
+        <textarea rows="4" cols="50" class="form-control border-bottom" [(ngModel)]="model.DETAIL" id="DETAIL"
+          name="DETAIL"></textarea>
+      </div>
+    </div>
+    <br>
+
+    <!-- ----------------------------------SUBMIT-------------------------------------- -->
+    <div class="row">
+      <div class="center">
+        <button type="submit" class="w3-btn w3-grey w3-border w3-border-green w3-text-white w3-round-xlarge"
+          (click)="openModal(template)" style="text-shadow:1px 1px 0 #444">SUBMIT</button>
+      </div>
+    </div>
+
+    <ng-template #template>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+      <p><span class="font">To :</span> {{this.model.TO.trim()}}</p>
+      <p><span class="font">Email :</span> {{this.model.EMAIL.trim()}}</p>
+      <p><span class="font">Tel Number :</span> {{this.model.TEL_NUMBER}}</p>
+      <p><span class="font">Purchase Order Key :</span> {{this.model.PO_KEY}}</p>
+      <p><span class="font">Product :</span> {{this.model.PRODUCT.trim()}}</p>
+      <p><span class="font">Number of Product :</span> {{this.model.NUM_PRODUCT}}</p>
+      <p><span class="font">Price per Product :</span> {{this.model.VALUE}}</p>
+      <p><span class="font">Delivery Date :</span> {{this.model.DELIVERY_DATE}}</p>
+
+    </pre>
+        <p>Do you want to confirm?</p>
+        <button type="button" class="btn btn-primary" (click)="confirm(resulttemplate,errortemplate)">Yes</button>
+        <button type="button" class="btn btn-default" (click)="decline()">No</button>
+      </div>
+    </ng-template>
+    <!-- ------------------------------------------------------------------------------ -->
+    <br>
+    <ng-template #resulttemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+            <p style="color:rgb(0, 0, 0); text-align: center " >{{message}}</p>
+              </pre>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="Ok()">
+          <a style="color:white" [routerLink]="['/dashboard']">
+            Ok
+          </a>
+        </button>
+      </div>
+    </ng-template>
+
+    <br>
+    <ng-template #errortemplate>
+      <div class="modal-body text-center">
+        <pre class="card card-block card-header text-left">
+            <p style="color:rgb(255, 0, 0); text-align: center" >error: {{message}}</p>
+              </pre>
+        <br>
+        <button type="button" class="btn btn-primary" (click)="Oknorefresh()">Ok</button>
+      </div>
+    </ng-template>
+    <!-- ------------------------------------------------------------------------------ -->
+
+    <!-- <div class="row" id='statusfield' style='display:none;'>
+      <div class="field-label col-md-12 mx-auto">
+        <label for="status" class="text-muted">Status</label>
+        <textarea style="border: none; background-color: white" class="form-control border-bottom" readonly id="status"
+          name="status"></textarea>
+      </div>
+    </div> -->
+
+    <br>
+
+  </form>
+</div>
