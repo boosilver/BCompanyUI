@@ -41,7 +41,7 @@ export class PROCURETOPAYService {
 
   //  ----------------------------------- Submit Create PO --------------------------------------------------------
   submitCreatePurchaseOrder(model: TransactionCreatePurchaseOrder): Observable<any> {
-    const url = environment.backendlotus + 'CreatePO'; // transaction.submit.service.request 
+    const url = environment.backendcompanyb + 'CreatePO'; // transaction.submit.service.request 
     let headers = new Headers();      //http://localhost:7002/api/v1/CreatePO
     this.createAuthorizationHeader(headers);
     return this.http.post(url, model, {
@@ -55,7 +55,7 @@ export class PROCURETOPAYService {
 
   //  ----------------------------------- Submit Create INVOICE --------------------------------------------------------
   submitCreateInvoice(model: TransactionCreateInvoice): Observable<any> {
-    const url = environment.backendlotus + 'CreateInvoice'; // transaction.submit.service.request
+    const url = environment.backendcompanyb + 'CreateInvoice'; // transaction.submit.service.request
     let headers = new Headers();        // http://localhost:7002/api/v1/CreateInvoice
     this.createAuthorizationHeader(headers);
     return this.http.post(url, model, {
@@ -69,7 +69,7 @@ export class PROCURETOPAYService {
 
   //  ----------------------------------- Submit Loan by INVOICE --------------------------------------------------------
   submitLoanbyInvoice(model: Loanbyinv): Observable<any> {
-    const url = environment.backendlotus + 'Loan'; // transaction.submit.service.request
+    const url = environment.backendcompanyb + 'Loan'; // transaction.submit.service.request
     let headers = new Headers();        // http://localhost:7002/api/v1/Loan
     this.createAuthorizationHeader(headers);
     return this.http.post(url, model, {
@@ -83,7 +83,7 @@ export class PROCURETOPAYService {
 
   //  ----------------------------------- Accept Endorse --------------------------------------------------------
   submitAcceptendorse(model: Acceptendorse): Observable<any> {
-    const url = environment.backendlotus + 'Accept'; // transaction.submit.service.request
+    const url = environment.backendcompanyb + 'Accept'; // transaction.submit.service.request
     let headers = new Headers();       //http://localhost:7002/api/v1/Accept
     this.createAuthorizationHeader(headers);
     return this.http.post(url, model, {
@@ -98,7 +98,7 @@ export class PROCURETOPAYService {
   
   //  ----------------------------------- Accept Invoice --------------------------------------------------------
   submitAcceptinvoice(model: Acceptinvoice): Observable<any> {
-    const url = environment.backendlotus + 'Success_Invoice'; // transaction.submit.service.request
+    const url = environment.backendcompanyb + 'Success_Invoice'; // transaction.submit.service.request
     let headers = new Headers();       //http://localhost:7002/api/v1/Success_Invoice
     this.createAuthorizationHeader(headers);
     return this.http.post(url, model, {
@@ -128,7 +128,7 @@ export class PROCURETOPAYService {
 
   // --------------------------------------------- Check Data Dashboard list-----------------------------------------------------------
   InquirePOByKeyFields(model: InquirePOByKeyFields): Observable<any> {
-    const url = environment.backendlotus + 'GetValue';//asset.service.request
+    const url = environment.backendcompanyb + 'GetValue';//asset.service.request
     let headers = new Headers();      //http://localhost:7002/api/v1/GetValue
     this.createAuthorizationHeader(headers);
     return this.http.post(url, model, {
@@ -145,7 +145,7 @@ export class PROCURETOPAYService {
 
   // --------------------------------------------- Check Data inquire-----------------------------------------------------------
   InquireData(model: InquireData): Observable<any> {
-    const url = environment.backendlotus + 'Getall';//asset.service.request
+    const url = environment.backendcompanyb + 'Getall';//asset.service.request
     let headers = new Headers();      //http://localhost:7002/api/v1/Getall
     this.createAuthorizationHeader(headers);
     return this.http.post(url, model, {
@@ -160,7 +160,7 @@ export class PROCURETOPAYService {
 
   // --------------------------------------------- Reject -----------------------------------------------------------
   Reject(model: Reject): Observable<any> {
-    const url = environment.backendlotus + 'Reject';//asset.service.request
+    const url = environment.backendcompanyb + 'Reject';//asset.service.request
     let headers = new Headers();      // http://localhost:7002/api/v1/Reject
     this.createAuthorizationHeader(headers);
     return this.http.post(url, model, {
@@ -174,7 +174,7 @@ export class PROCURETOPAYService {
   // -------------------------------------------------- End key -----------------------------------------------------------
 
   // dashboard() {
-  //   const url = environment.backendlotus + 'GetList';
+  //   const url = environment.backendcompanyb + 'GetList';
   //   // const url = 'assets/config.json';
   //   let headers = new Headers();
   //   this.createAuthorizationHeader(headers);
@@ -183,7 +183,7 @@ export class PROCURETOPAYService {
   // }
 
   // dashboardlist() {
-  //   const url = environment.backendlotus + 'GetList';
+  //   const url = environment.backendcompanyb + 'GetList';
   //   // const url = 'assets/config.json';
   //   let headers = new Headers();
   //   this.createAuthorizationHeader(headers);
@@ -194,7 +194,7 @@ export class PROCURETOPAYService {
   // --------------------------------------------- Get Dashboard -----------------------------------------------------------
 
   listinformation(): Observable<any> {
-    const url = environment.backendlotus + 'GetList';
+    const url = environment.backendcompanyb + 'GetList';
     // const url = 'assets/config.json';
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
@@ -203,7 +203,7 @@ export class PROCURETOPAYService {
   }
 
   dashboardlist(): Observable<Myinterfacedata> {
-    const url = environment.backendlotus + 'GetList';
+    const url = environment.backendcompanyb + 'GetList';
     let headers = new Headers();
     this.createAuthorizationHeader(headers);
     return this.http.get(url, {
